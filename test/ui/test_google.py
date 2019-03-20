@@ -11,8 +11,8 @@ class TestGoogle2:
         self.driver: WebDriver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
 
     def test_gbsfo(self):
-        self.start_page = StartPage(self.driver)
-        self.start_page.open_page("https://www.google.com").send_request("gbsfo")
 
-    def teardown_method(self):
-        self.driver.close()
+        StartPage(self.driver).\
+            open_page("https://www.google.com").\
+            send_request("gbsfo")
+
