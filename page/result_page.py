@@ -11,9 +11,9 @@ class ResultPage(BasePage):
     LIST_RESULT = (By.CSS_SELECTOR, "div.rc")
     TEXT_RESULT = (By.CSS_SELECTOR, "h3")
     LINK_RESULT = (By.CSS_SELECTOR, "a")
-    _TOOLS = (By.XPATH, "//div[@role='navigation']/div/div/div/div[2]/a")
-    _TIME_SEARCH = (By.XPATH, "//div[@role='navigation']/div[2]/div/div[3]")
-    _TIME_ONE_HOUR = (By.XPATH, "//div[@role='navigation']/div[2]/div//ul[2]//li[2]/a")
+    TOOLS = (By.XPATH, "//div[@role='navigation']/div/div/div/div[2]/a")
+    TIME_SEARCH = (By.XPATH, "//div[@role='navigation']/div[2]/div/div[3]")
+    TIME_ONE_HOUR = (By.XPATH, "//div[@role='navigation']/div[2]/div//ul[2]//li[2]/a")
 
     def find_text_result(self, text):
         result = []
@@ -24,18 +24,16 @@ class ResultPage(BasePage):
         """переключаемся на другую вкладку"""
 
     def tools_click(self):
-        self.driver.find_element(*self._TOOLS).click()
+        self.driver.find_element(*self.TOOLS).click()
         return self
 
     def time_click(self):
-        element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(*self._TIME_SEARCH))
-        element.click()
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(*self.TIME_SEARCH)).click()
         return self
 
     def time_click_one_hour(self):
-        element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(*self._TIME_ONE_HOUR))
-        element.click()
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(*self.TIME_ONE_HOUR)).click()
         return self
 
     def time_get_text(self):
-        return self.driver.find_element(*self._TIME_ONE_HOUR).text
+        return self.driver.find_element(*self.TIME_ONE_HOUR).text
