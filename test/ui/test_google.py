@@ -25,4 +25,5 @@ class TestGoogle2(TestBase):
             tools_click().\
             time_click().\
             time_click_one_hour()
-        assert (ResultPage(self.driver).time_get_text() == 'За час')
+        text = ResultPage(self.driver).time_get_text()
+        assert (text == 'За час')

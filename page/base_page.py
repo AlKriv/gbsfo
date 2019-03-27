@@ -1,4 +1,5 @@
 from selenium.webdriver.android.webdriver import WebDriver
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BasePage:
@@ -6,3 +7,4 @@ class BasePage:
 
     def __init__(self, driver):
         self.driver = driver
+        self.wait = WebDriverWait(self.driver, 30)

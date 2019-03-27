@@ -24,16 +24,16 @@ class ResultPage(BasePage):
         """переключаемся на другую вкладку"""
 
     def tools_click(self):
-        self.driver.find_element(*self.TOOLS).click()
+        self.wait.until(EC.presence_of_element_located(self.TOOLS)).click()
         return self
 
     def time_click(self):
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(*self.TIME_SEARCH)).click()
+        self.wait.until(EC.element_to_be_clickable(self.TIME_SEARCH)).click()
         return self
 
     def time_click_one_hour(self):
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(*self.TIME_ONE_HOUR)).click()
+        self.wait.until(EC.element_to_be_clickable(self.TIME_ONE_HOUR)).click()
         return self
 
     def time_get_text(self):
-        return self.driver.find_element(*self.TIME_ONE_HOUR).text
+        return self.wait.until(EC.presence_of_element_located(self.TIME_SEARCH)).text
